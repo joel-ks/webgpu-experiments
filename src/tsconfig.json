@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
         "outDir": "../js",
+        "target": "ESNext",
         "module": "ESNext",
         "moduleResolution": "node",
         "sourceMap": true,
