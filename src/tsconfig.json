@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "outDir": "../js",
+        "module": "ESNext",
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "typeRoots": [ "../node_modules/@webgpu/types", "../node_modules/@types"],
+
+        "strict": true,
+        "exactOptionalPropertyTypes": true,
+        "noImplicitOverride": true,
+        "noImplicitReturns": true,
+        "noUncheckedIndexedAccess": true,
+        "forceConsistentCasingInFileNames": true
+    },
+    "include": [ "." ]
+}
