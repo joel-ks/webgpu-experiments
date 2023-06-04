@@ -1,5 +1,6 @@
 import WebGpuRenderer from "./WebGpuRenderer";
 import SimpleTriangle from "./SimpleTriangle";
+import SimpleCube from "./SimpleCube/renderer";
 
 window.addEventListener("load", main);
 
@@ -21,7 +22,8 @@ async function main() {
     if (!device) throw new Error("Could not get GPU device");
 
     const renderer: WebGpuRenderer
-        = new SimpleTriangle(canvasGpuContext, device);
+        // = new SimpleTriangle(canvasGpuContext, device);
+        = new SimpleCube(canvasGpuContext, device);
     
     renderer.setup(navigator.gpu.getPreferredCanvasFormat());
     run(renderer);
@@ -32,12 +34,12 @@ function run(renderer: WebGpuRenderer) {
     const frame = (t: number) => {
         const deltaT = lastFrameTime ? t - lastFrameTime : 0;
 
-        renderer.render(deltaT);
+        renderer.render(deltaT / 1000);
 
         lastFrameTime = t;
         requestAnimationFrame(frame);
     };
-    
+
     requestAnimationFrame(frame);
 }
 

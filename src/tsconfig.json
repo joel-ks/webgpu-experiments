@@ -5,7 +5,6 @@
         "module": "ESNext",
         "moduleResolution": "node",
         "sourceMap": true,
-        "typeRoots": [ "../node_modules/@webgpu/types", "../node_modules/@types"],
 
         "strict": true,
         "exactOptionalPropertyTypes": true,
@@ -14,5 +13,8 @@
         "noUncheckedIndexedAccess": true,
         "forceConsistentCasingInFileNames": true
     },
-    "include": [ "." ]
+    "include": [
+        ".",
+        "../node_modules/@webgpu/types/**/*.d.ts"
+    ]
 }

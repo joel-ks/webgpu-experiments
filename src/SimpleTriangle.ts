@@ -10,7 +10,7 @@ const vertexData = new Float32Array([
     0.5, -0.6, 0, 1,    0, 0, 1, 1
 ]);
 
-const shaders = `
+const shaders = /* wgsl */`
 struct VertexOut {
     @builtin(position) position : vec4f,
     @location(0) color : vec4f
@@ -44,6 +44,7 @@ export default class SimpleTriangle extends WebGpuRenderer {
     }
 
     setup(preferredCanvasFormat: GPUTextureFormat): void {
+        // ********** SETUP CANVAS **********
         this._canvasContext.canvas.width = width;
         this._canvasContext.canvas.height = height;
         this._canvasContext.configure({
@@ -51,17 +52,20 @@ export default class SimpleTriangle extends WebGpuRenderer {
             format: preferredCanvasFormat,
             alphaMode: "premultiplied"
         });
-    
+
+        // ********** SETUP RESOURCES **********
         const shaderModule = this._device.createShaderModule({
+            label: "triangle shaders",
             code: shaders
         });
-    
+
         this.#vertexBuffer = this._device.createBuffer({
+            label: "triangle vertices",
             size: vertexData.byteLength,
             usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST
         });
         this._device.queue.writeBuffer(this.#vertexBuffer, 0, vertexData, 0, vertexData.length);
-    
+
         // ********** SETUP PIPELINE **********
         const vertexBufferLayout: GPUVertexBufferLayout = {
             attributes: [
@@ -79,8 +83,9 @@ export default class SimpleTriangle extends WebGpuRenderer {
             arrayStride: 32,
             stepMode: "vertex"
         };
-    
+
         const pipelineDesc: GPURenderPipelineDescriptor = {
+            label: "triangle render pipeline",
             vertex: {
                 module: shaderModule,
                 entryPoint: "vertex_main",
@@ -111,6 +116,7 @@ export default class SimpleTriangle extends WebGpuRenderer {
         const commandEncoder = this._device.createCommandEncoder();
 
         const renderPassEncoder = commandEncoder.beginRenderPass({
+            label: "triangle render pass",
             colorAttachments: [
                 {
                     clearValue: bgColour,
@@ -124,7 +130,7 @@ export default class SimpleTriangle extends WebGpuRenderer {
         renderPassEncoder.setVertexBuffer(0, this.#vertexBuffer);
         renderPassEncoder.draw(3);
         renderPassEncoder.end();
-    
+
         this._device.queue.submit([commandEncoder.finish()]);
     }
 }

@@ -8,5 +8,5 @@ export default abstract class WebGpuRenderer {
     }
 
     abstract setup(preferredCanvasFormat: GPUTextureFormat): void;
-    abstract render(timestamp: number): void;
+    abstract render(deltaTSes: number): void;
 }
