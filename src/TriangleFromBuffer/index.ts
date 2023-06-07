@@ -1,4 +1,4 @@
-import WebGpuRenderer from "./WebGpuRenderer";
+import WebGpuRenderer from "../WebGpuRenderer";
 
 const width = 800, height = 480;
 

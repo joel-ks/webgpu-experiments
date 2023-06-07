@@ -12,7 +12,7 @@ const rotationVelocity = Math.PI / 6;
 
 const bgColour: GPUColor = { r: 0.0, g: 0.0, b: 0.0, a: 1.0 };
 
-export default class SimpleCube extends WebGpuRenderer {
+export default class RotatingCube extends WebGpuRenderer {
     #renderPipeline: GPURenderPipeline | null = null;
 
     #uniformBindGroup: GPUBindGroup | null = null;
