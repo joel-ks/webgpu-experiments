@@ -4,17 +4,20 @@
         "target": "ESNext",
         "module": "ESNext",
         "moduleResolution": "node",
+        "lib": ["ESNext", "DOM"],
         "sourceMap": true,
 
         "strict": true,
         "exactOptionalPropertyTypes": true,
+        "forceConsistentCasingInFileNames": true,
         "noImplicitOverride": true,
         "noImplicitReturns": true,
         "noUncheckedIndexedAccess": true,
-        "forceConsistentCasingInFileNames": true
+        "skipLibCheck": true,
+        "verbatimModuleSyntax": true
     },
     "include": [
         ".",
-        "../node_modules/@webgpu/types/**/*.d.ts"
+        "../node_modules/@webgpu/types/dist/index.d.ts"
     ]
 }
