@@ -2,6 +2,7 @@ import WebGpuRenderer from "./WebGpuRenderer";
 import RotatingCube from "./RotatingCube";
 import SimpleTriangle from "./SimpleTriangle";
 import TriangleFromBuffer from "./TriangleFromBuffer";
+import GameOfLife from "./GameOfLife";
 
 window.addEventListener("load", main);
 
@@ -25,7 +26,8 @@ async function main() {
     const renderer: WebGpuRenderer
         // = new SimpleTriangle(canvasGpuContext, device);
         // = new TriangleFromBuffer(canvasGpuContext, device);
-        = new RotatingCube(canvasGpuContext, device);
+        // = new RotatingCube(canvasGpuContext, device);
+        = new GameOfLife(canvasGpuContext, device);
     
     renderer.setup(navigator.gpu.getPreferredCanvasFormat());
     run(renderer);
