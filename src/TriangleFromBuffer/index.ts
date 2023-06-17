@@ -43,7 +43,7 @@ export default class SimpleTriangle extends WebGpuRenderer {
         this._canvasContext.canvas.height = height;
     }
 
-    setup(preferredCanvasFormat: GPUTextureFormat): void {
+    setup(preferredCanvasFormat: GPUTextureFormat): Promise<void> {
         // ********** SETUP CANVAS **********
         this._canvasContext.canvas.width = width;
         this._canvasContext.canvas.height = height;
@@ -96,7 +96,7 @@ export default class SimpleTriangle extends WebGpuRenderer {
                 entryPoint: "fragment_main",
                 targets: [
                     {
-                        format: navigator.gpu.getPreferredCanvasFormat()
+                        format: preferredCanvasFormat
                     }
                 ]
             },
@@ -107,6 +107,8 @@ export default class SimpleTriangle extends WebGpuRenderer {
         };
 
         this.#renderPipeline = this._device.createRenderPipeline(pipelineDesc);
+
+        return Promise.resolve();
     }
 
     render(): void {

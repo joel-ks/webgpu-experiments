@@ -33,7 +33,7 @@ export default class GameOfLife extends WebGpuRenderer {
         super(canvasContext, device);
     }
 
-    setup(preferredCanvasFormat: GPUTextureFormat): void {
+    setup(preferredCanvasFormat: GPUTextureFormat): Promise<void> {
         this._canvasContext.canvas.width = CANVAS_SIZE;
         this._canvasContext.canvas.height = CANVAS_SIZE;
         this._canvasContext.configure({
@@ -196,6 +196,8 @@ export default class GameOfLife extends WebGpuRenderer {
                 ],
             })
         ];
+
+        return Promise.resolve();
     }
 
     render(deltaTSecs: number): void {
