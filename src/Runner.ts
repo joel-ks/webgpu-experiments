@@ -27,7 +27,8 @@ export default class Runner {
         const renderer =
             // new (await import("./SimpleTriangle")).default(canvasGpuContext, device);
             // new (await import("./TriangleFromBuffer")).default(canvasGpuContext, device);
-            new (await import("./RotatingCube")).default(canvasGpuContext, device);
+            // new (await import("./RotatingCube")).default(canvasGpuContext, device);
+            new (await import("./LitCube")).default(canvasGpuContext, device);
             // new (await import("./GameOfLife")).default(canvasGpuContext, device);
 
         return new Runner(device, renderer);
