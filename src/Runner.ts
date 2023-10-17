@@ -28,10 +28,13 @@ export default class Runner {
             // new (await import("./SimpleTriangle")).default(canvasGpuContext, device);
             // new (await import("./TriangleFromBuffer")).default(canvasGpuContext, device);
             // new (await import("./RotatingCube")).default(canvasGpuContext, device);
+            // new (await import("./TexturedCube")).default(canvasGpuContext, device);
             new (await import("./LitCube")).default(canvasGpuContext, device);
             // new (await import("./GameOfLife")).default(canvasGpuContext, device);
 
-        return new Runner(device, renderer);
+        const runner = new Runner(device, renderer);
+        await renderer.setup(navigator.gpu.getPreferredCanvasFormat());
+        return runner;
     }
 
     #renderer: WebGpuRenderer;
@@ -42,7 +45,6 @@ export default class Runner {
         this.#renderer = renderer;
 
         device.lost.then(this.#onDeviceLost);
-        this.#renderer.setup(navigator.gpu.getPreferredCanvasFormat());
     }
 
     run() {
